@@ -1,0 +1,128 @@
+1. Definição das Classes:
+    classe Pessoa:
+    Nome
+    Endereço
+    RG
+    CPF
+    Telefone
+
+    classe Funcionário (herda de Pessoa):
+    Matrícula
+
+    classe Gerente (herda de Funcionário):
+    Lista de Clientes
+    Cadastro de Clientes e Contas
+
+    classe Diretor (herda de Funcionário):
+    Cadastro e Remoção de Gerentes
+
+    classe Cliente (herda de Pessoa):
+    Gerente
+    Contas (lista)
+    
+    classe Conta:
+    Saldo
+    Limite
+    Tipo (Conta Corrente ou Poupança)
+    
+    classe Conta Corrente (herda de Conta):
+    Rendimento via CDB
+
+    classe Conta Poupança (herda de Conta):
+    Rendimento Automático
+
+2. Implementação da Lógica de Negócio:
+
+    classe ClienteUsuario:
+        tera que ser uma extenção de cliente, onde ao clicar no botão do menu 'cliente', pedir 
+        CPF e Senha de 6 digítos.
+        ao logar mostre o primeiro e ultimo nome no topo da tela, em baixo, 
+        colocar botões para Consultar saldo, extrato, realizar transferências e depósitos.
+            aos seguintes botões:
+                Consulta Saldo, mostrar em forma de aleta o saldo dele.
+                Extrato, mostrar a entrada e saida de dinheiro na conta, e para onde foi mandado.
+                Transferência, ele pode pega o saldo da conta Poupança para atual e vice versa. 
+                Transferência Poupança, coloca um campo onde o cliente possa colocar um saldo para transferir para conta Poupança, ele não pode transferir 0 reais e nem um valor a cima do próprio saldo atual.
+                Depósito, colocar um campo chamado "Receptor" para colocar uma pessoa que ira receber a transferência.
+        se o cliente estiver logado e voltar até o menu, salve o progreço dele e deslogue ele automaticamente.
+    cada passo que ele acessar tera que ter um botão para voltar    
+
+    classe GerenteUsuario:
+        Tera que ser uma extenção de gerente,  onde ao clicar no botão do menu 'Gernte', pedir 
+        matricula do gerente e senha de 8 digítos.
+        ao logar colocar o nome do gerente no topo ao lado direito da tela.
+        colcoar os seguintes requisitos:
+            Campo para pesquisar cpf de cliente, clicar no nome do cliente e abrir uma nova aba, 
+            na nova aba o gerente pode acessar conta de cliente, 
+            ter um botão visualizar saldos( onde o saldo será mostrado como texto), um botão para rendimentos,
+            botões para realizar operações como transferências e depósitos.
+        cada passo que ele acessar tera que ter um botão para voltar    
+
+    classe DiretorUsuario:
+        tera que ser uma extenção de Diretor, ter um acesso de diretor onde o login "Adm01" e senha "ProtocoloX"
+            o diretor tem acesso a tudo de clientes e gerentes.
+            faça um menu onde o diretor possa usar as seguintes funções
+            Gerenciar gerentes, cadastrar, remover ou alterar permissões.
+                cadastrar, ele ira cadastrar um novo gerente então pessa todos os dados para cadastrar gerente
+                remover, ele irar remover o gerente, para isso ele tem que coloca a matricula do gerente, e 
+                colocar um texto explicativo do porque ele está sendo removido, e tem que ter um botão para 
+                'excluir' com uma resposta onde mostra um popUp de "Tem certeza que quer remover o gerente",
+                colocar botões de sim e não, caso aperte botão sim exclua o gerente, caso não volte o passo anterior.
+                alterar, colocaque um campo para pegar a matricula do gerente, e deixe os campos para alterar,
+                coloque um botão para salvar.
+                após ele clicar em salvar uma menssagem deve aparecer "Alteração salva!"
+                volte ao menu.
+    cada passo que ele acessar tera que ter um botão para voltar.  
+    
+    Não foi feito -->   Logs Detalhados:
+                        Registro de todas as operações bancárias em arquivos de log, incluindo:
+                        ID do usuário que realizou a operação
+                        Tipo de operação (consulta de saldo, transferência, depósito, etc.)
+                        Conta bancária afetada
+                        Valor da operação
+                        Saldo da conta antes e depois da operação
+                        Data e hora da operação
+                        salvar o log em um HistoricoLOG.txt para ir sempre escrevendo.
+
+3. Arquitetura Cliente-Servidor: <--- Não foi feito
+
+    Servidor:
+    Armazena os dados do banco em arquivos seguros.
+    Executa a lógica de negócio das operações bancárias.
+    Gerencia logs de operações.
+    Comunica-se com o cliente através de uma interface de rede.
+    Cliente:
+    Exibe a interface gráfica para o usuário.
+    Envia requisições ao servidor para realizar operações bancárias.
+    Recebe as respostas do servidor e as apresenta ao usuário.
+
+4. Implementação da Interface Gráfica:
+    Usar um greed para que a tela sempre fique em um tamanho fixo, em uma resulução de 16:9 os itens se alinhe no meio da tela 
+    com forme o tamanho de espaçamento.
+
+5. Persistência em Arquivos:
+    crie uma pasta para salvar os aquivos separadamente.
+    ou seja pasta clientes para o cliente cadastrados, gerentes para gerentes cadastrados.
+    Armazenamento Seguro:
+    Utilizar arquivos para persistir os dados do banco (clientes, contas, transações).
+    Criptografar os dados para garantir confidencialidade e segurança.
+    Definir um local seguro para armazenar os arquivos.
+    Gerenciamento de Arquivos:
+    Criar, ler e atualizar arquivos de forma eficiente.
+    Implementar mecanismos de backup e recuperação de dados para garantir a resiliência do sistema.
+    Otimizar o acesso aos arquivos para evitar gargalos de desempenho.
+
+6. Testes e Refinamento:
+
+    Testes Unitários:
+    Testar cada módulo e classe do sistema isoladamente para garantir seu funcionamento correto.
+    Testes de Integração:
+    Verificar a integração entre os diferentes módulos e componentes do sistema.
+    Testes de Carga:
+    Simular um grande número de usuários simultâneos para avaliar a escalabilidade do sistema.
+    Testes de Segurança:
+    Verificar se o sistema está protegido contra vulnerabilidades e ataques cibernéticos.
+    Refinamento do Sistema:
+    Corrigir bugs e falhas identificadas durante os testes.
+    Melhorar a usabilidade e a experiência do usuário.
+    Implementar novas funcionalidades de acordo com as necessidades dos usuários.
